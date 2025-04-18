@@ -78,28 +78,28 @@ export function JobCard({ job }: JobCardProps) {
                         <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs mt-3 bg-muted p-2 rounded-md">
                             <div className="flex items-center justify-between">
                                 <span>Processed:</span>
-                                <span className="font-medium">{job.metrics.processed_items}</span>
+                                <span className="font-medium">{job.metrics.processed_items.toLocaleString()}</span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span>Success:</span>
-                                <span className="font-medium text-green-500">{job.metrics.success_count}</span>
+                                <span className="font-medium text-green-500">{job.metrics.success_count.toLocaleString()}</span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span>Warnings:</span>
                                 <span className={`font-medium ${job.metrics.warning_count > 0 ? "text-yellow-500" : ""}`}>
-                                    {job.metrics.warning_count}
+                                    {job.metrics.warning_count.toLocaleString()}
                                 </span>
                             </div>
                             <div className="flex items-center justify-between">
-                                <span>Invalilds:</span>
+                                <span>Invalids:</span>
                                 <span className={`font-medium ${job.metrics.invalid_count > 0 ? "text-orange-500" : ""}`}>
-                                    {job.metrics.invalid_count}
+                                    {job.metrics.invalid_count.toLocaleString()}
                                 </span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span>Failures:</span>
                                 <span className={`font-medium ${job.metrics.failure_count > 0 ? "text-red-500" : ""}`}>
-                                    {job.metrics.failure_count}
+                                    {job.metrics.failure_count.toLocaleString()}
                                 </span>
                             </div>
                             <div className="col-span-2 flex items-center justify-between border-t border-muted-foreground/20 pt-1 mt-1">

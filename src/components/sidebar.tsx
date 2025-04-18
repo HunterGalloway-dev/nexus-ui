@@ -1,6 +1,19 @@
 'use client'
 
-import { BarChart, Briefcase, LucideIcon } from "lucide-react";
+import {
+    BarChart,
+    Briefcase,
+    Layers,
+    Map,
+    LucideIcon,
+    Activity,
+    Layout,
+    Users,
+    Compass,
+    Image,
+    MapPin,
+    MapIcon
+} from "lucide-react";
 
 import {
     Sidebar,
@@ -8,11 +21,12 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
+    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation"; // If using Next.js
+import { usePathname } from "next/navigation";
 
 // Define types for our navigation items
 type NavItem = {
@@ -33,14 +47,64 @@ const navigation: NavGroup[] = [
         title: "Services",
         items: [
             {
-                title: "Match Analytics",
-                href: "/match",
+                title: "Analytics",
+                href: "/metrics",
                 icon: BarChart,
             },
             {
                 title: "Jobs",
                 href: "/jobs",
                 icon: Briefcase,
+            },
+        ],
+    },
+    {
+        title: "Analytics",
+        items: [
+            {
+                title: "Zone Heatmap",
+                href: "/analytics/zone-heatmap",
+                icon: MapIcon,
+            },
+            {
+                title: "Alternative Heatmap",
+                href: "/analytics/alt-heatmap",
+                icon: Layout,
+            },
+            {
+                title: "Unplayable Maps",
+                href: "/analytics/unplayable-maps",
+                icon: Map,
+            },
+            {
+                title: "IGL Simulator",
+                href: "/analytics/igl-simulator",
+                icon: Users,
+            },
+            {
+                title: "Rotation Analyzer",
+                href: "/analytics/rotation-analyzer",
+                icon: Compass,
+            },
+        ],
+    },
+    {
+        title: "Drop Maps",
+        items: [
+            {
+                title: "Generator",
+                href: "/dropmaps/generator",
+                icon: Layers,
+            },
+            {
+                title: "Logo Manager",
+                href: "/dropmaps/logo-manager",
+                icon: Image,
+            },
+            {
+                title: "Spots Manager",
+                href: "/dropmaps/spots-manager",
+                icon: MapPin,
             },
         ],
     },
@@ -51,6 +115,9 @@ export function AppSidebar() {
 
     return (
         <Sidebar>
+            <SidebarHeader className="py-4 px-6 border-b">
+                <h2 className="text-xl font-bold">NEXUS</h2>
+            </SidebarHeader>
             <SidebarContent>
                 {navigation.map((group) => (
                     <SidebarGroup key={group.title}>
@@ -63,8 +130,8 @@ export function AppSidebar() {
                                             asChild
                                             isActive={pathname === item.href}
                                         >
-                                            <a href={item.href}>
-                                                <item.icon />
+                                            <a href={item.href} className="flex items-center gap-3">
+                                                <item.icon className="h-5 w-5" />
                                                 <span>{item.title}</span>
                                             </a>
                                         </SidebarMenuButton>
